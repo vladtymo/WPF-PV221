@@ -12,14 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
-namespace _01_intro
+namespace _02_base_controls
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer _timer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +29,12 @@ namespace _01_intro
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello WPF!");
+            MessageBox.Show("Clicked!!!", "Event", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+        }
+
+        private void RepeatButton_Click(object sender, RoutedEventArgs e)
+        {
+            txtBox.Text = $"{DateTime.Now:mm:ss:FFF}";
         }
     }
 }

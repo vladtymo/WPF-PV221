@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:_01_intro"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <UniformGrid Columns="2">
+        <Button Margin="10" Padding="15" Background="DarkCyan" Click="Button_Click">
+            <TextBlock TextWrapping="Wrap">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</TextBlock>
+        </Button>
+        <Button Margin="10" Background="DarkCyan" Click="Button_Click">Push Me</Button>
+        <Button Margin="10" Background="DarkCyan" Click="Button_Click">Push Me</Button>
+        <Button Margin="10" Background="DarkCyan" Click="Button_Click">Push Me</Button>
+    </UniformGrid>
 </Window>

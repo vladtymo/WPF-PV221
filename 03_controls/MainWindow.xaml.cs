@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace _01_intro
+namespace _03_controls
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -27,7 +27,14 @@ namespace _01_intro
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello WPF!");
+            if (datePicker.SelectedDate != null)
+                this.Title = datePicker.SelectedDate.Value.ToLongDateString();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (calendar.SelectedDate != null)
+                MessageBox.Show($"From: {calendar.SelectedDates.First()}\nTo: {calendar.SelectedDates.Last()}", "Selected Date Range");
         }
     }
 }

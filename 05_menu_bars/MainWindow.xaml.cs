@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace _01_intro
+namespace _05_menu_bars
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,9 +25,9 @@ namespace _01_intro
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello WPF!");
+            this.Close();
         }
     }
 }
