@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_06_bindings"
+        d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="321">
     <Window.Background>
@@ -40,6 +41,8 @@
             <TextBox Text="{Binding Path=Student.AverageMark}" Margin="5"></TextBox>
         </DockPanel>
 
-        <Button Click="Button_Click">Show Student</Button>
+        <Button Margin="5" Click="Button_Click">Show Student</Button>
+
+        <CheckBox IsChecked="{Binding Path=IsDarkTheme}" Margin="5">Dark Theme</CheckBox>
     </StackPanel>
 </Window>

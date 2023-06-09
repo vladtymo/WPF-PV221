@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -35,6 +36,7 @@ namespace _06_bindings
         }
     }
 
+    [PropertyChanged.AddINotifyPropertyChangedInterface]
     public class ViewModel
     {
         // all properties to bind from XAML
@@ -42,13 +44,18 @@ namespace _06_bindings
 
         public Student Student { get; set; }
         public string Title { get; set; }
-        public Color Color { get; set; }
+
+        // Color: DarkGray or LightGray
+        // ternary operator: (condition) ? value : value
+        [DependsOn("IsDarkTheme")]
+        public Color Color => IsDarkTheme ? Colors.DarkGray : Colors.LightGray; // readonly
+
+        public bool IsDarkTheme { get; set; } // auto change
 
         public ViewModel()
         {
             Student = new() { Name = "Oleg", AverageMark = 10.4F };
             Title = "Hello Bindings!";
-            Color = Colors.LightGray;
         }
     }
 
