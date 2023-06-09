@@ -1,0 +1,45 @@
+﻿<Window x:Class="_06_bindings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_06_bindings"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="450" Width="321">
+    <Window.Background>
+        <SolidColorBrush Color="{Binding Color, FallbackValue=White}"></SolidColorBrush>
+    </Window.Background>
+    <StackPanel>
+        <TextBlock TextAlignment="Center" FontSize="24">Bindings</TextBlock>
+        <Slider Maximum="80" x:Name="slider" Margin="5" Value="33"></Slider>
+        <ProgressBar Value="{Binding ElementName=slider, Path=Value}" Margin="5" Height="10"></ProgressBar>
+        <TextBox Text="{Binding ElementName=slider, Path=Value}" Margin="5"></TextBox>
+
+        <TextBlock TextAlignment="Center" FontSize="18">Modes / Triggers</TextBlock>
+        <!--Default Binding Mode:
+                User-editable controls: Two-Way
+                Other: One-Way
+         Default Update Sourse Trigger:
+                Text Property: LostFocus
+                Other: PropertyChanged -->
+        <Label>Mode: One Way</Label>
+        <TextBox Text="{Binding ElementName=slider, Path=Value, Mode=OneWay}" Margin="5"></TextBox>
+        <Label>Update Sourse Trigger: Property Changed</Label>
+        <TextBox Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+
+        <CheckBox Name="checkBox" Margin="5">Active Button</CheckBox>
+        <Button IsEnabled="{Binding ElementName=checkBox, Path=IsChecked}" Margin="5">Show Private Policy</Button>
+
+        <TextBlock TextAlignment="Center" FontSize="18">Data Context</TextBlock>
+        <DockPanel>
+            <Label DockPanel.Dock="Left">Name:</Label>
+            <TextBox Text="{Binding Path=Student.Name}" Margin="5"></TextBox>
+        </DockPanel>
+        <DockPanel>
+            <Label DockPanel.Dock="Left">Average Mark:</Label>
+            <TextBox Text="{Binding Path=Student.AverageMark}" Margin="5"></TextBox>
+        </DockPanel>
+
+        <Button Click="Button_Click">Show Student</Button>
+    </StackPanel>
+</Window>
