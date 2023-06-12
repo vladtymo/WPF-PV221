@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04_range_controls", "04_ran
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05_menu_bars", "05_menu_bars\05_menu_bars.csproj", "{3D6A0505-CA39-4B60-9E90-C42F2AFC5CE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_bindings", "06_bindings\06_bindings.csproj", "{DF636CE7-18D8-45B6-93B5-EFA895E1913F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06_bindings", "06_bindings\06_bindings.csproj", "{DF636CE7-18D8-45B6-93B5-EFA895E1913F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07_collection_binding", "07_collection_binding\07_collection_binding.csproj", "{30FD3D2E-7E0F-4A41-B66A-CA07968A468D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{DF636CE7-18D8-45B6-93B5-EFA895E1913F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF636CE7-18D8-45B6-93B5-EFA895E1913F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF636CE7-18D8-45B6-93B5-EFA895E1913F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FD3D2E-7E0F-4A41-B66A-CA07968A468D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FD3D2E-7E0F-4A41-B66A-CA07968A468D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FD3D2E-7E0F-4A41-B66A-CA07968A468D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FD3D2E-7E0F-4A41-B66A-CA07968A468D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
