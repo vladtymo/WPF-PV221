@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05_menu_bars", "05_menu_bar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06_bindings", "06_bindings\06_bindings.csproj", "{DF636CE7-18D8-45B6-93B5-EFA895E1913F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07_collection_binding", "07_collection_binding\07_collection_binding.csproj", "{30FD3D2E-7E0F-4A41-B66A-CA07968A468D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07_collection_binding", "07_collection_binding\07_collection_binding.csproj", "{30FD3D2E-7E0F-4A41-B66A-CA07968A468D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08_mvvm_contacts", "08_mvvm_contacts\08_mvvm_contacts.csproj", "{062223FB-3588-4902-804C-02CAE0FDCE06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08_mvvm_contacts", "08_mvvm_contacts\08_mvvm_contacts.csproj", "{062223FB-3588-4902-804C-02CAE0FDCE06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09_shulte_table", "09_shulte_table\09_shulte_table.csproj", "{0C35EEE7-71E1-42B2-A9A8-537D2F666760}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{062223FB-3588-4902-804C-02CAE0FDCE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{062223FB-3588-4902-804C-02CAE0FDCE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{062223FB-3588-4902-804C-02CAE0FDCE06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C35EEE7-71E1-42B2-A9A8-537D2F666760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C35EEE7-71E1-42B2-A9A8-537D2F666760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C35EEE7-71E1-42B2-A9A8-537D2F666760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C35EEE7-71E1-42B2-A9A8-537D2F666760}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
