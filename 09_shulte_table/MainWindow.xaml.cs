@@ -25,7 +25,7 @@ namespace _09_shulte_table
         {
             InitializeComponent();
 
-            this.DataContext = new TableVM(5);
+            this.DataContext = new TableVM(3);
         }
     }
 }

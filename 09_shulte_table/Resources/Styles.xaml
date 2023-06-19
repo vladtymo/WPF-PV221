@@ -17,15 +17,28 @@
         <Setter Property="BorderBrush" Value="#FF402757"/>
     </Style>
 
+    <Duration x:Key="ButtonPressDuration">0:0:0.2</Duration>
+    
     <Style x:Key="CellStyle" TargetType="{x:Type Button}">
+
         <Setter Property="Content" Value="{Binding Number}"/>
+
+        <!--Command-->
+        <Setter Property="Command" Value="{Binding ClickCommand}"/>
+        <Setter Property="CommandParameter" Value="{Binding Number}"/>
+        <!--Layout-->
         <Setter Property="Margin" Value="0.6"></Setter>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="0" Y="0"/>
+            </Setter.Value>
+        </Setter>
         <!--Background-->
         <Setter Property="BorderThickness" Value="0,0,0,4"></Setter>
         <Setter Property="BorderBrush" Value="#FFB8B8B8"></Setter>
         <Setter Property="Background" Value="#FFF6F6F6"></Setter>
         <!--Text Properties-->
-        <Setter Property="FontSize" Value="24"></Setter>
+        <Setter Property="FontSize" Value="32"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="Foreground" Value="#FF4A464D"></Setter>
         <!--Control Template-->
@@ -47,28 +60,61 @@
         
         <Style.Triggers>
 
-            <!--Press Animation-->
+            <!--Shake Animation-->
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <!--<Condition Binding="{Binding IsNext}" Value="True"/>-->
+                    <Condition Binding="{Binding State}" Value="{x:Static vms:CellState.Next}"/>
                     <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="True"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.EnterActions>
-                    <BeginStoryboard>
+                    <BeginStoryboard x:Name="BeginStoryboardName">
                         <Storyboard>
-                            <ThicknessAnimation To="0,5,0,0"
-                                                    Storyboard.TargetProperty="BorderThickness"
-                                                    Duration="0:0:0.1"/>
-                            <ColorAnimation To="#FF694887"
-                                                    Storyboard.TargetProperty="Background.Color"
-                                                    Duration="0:0:0.1"/>
-                            <ColorAnimation To="#FF593D74"
-                                                    Storyboard.TargetProperty="BorderBrush.Color"
-                                                    Duration="0:0:0.1"/>
+                            <DoubleAnimationUsingKeyFrames
+                                                        Storyboard.TargetProperty="RenderTransform.X"
+                                                        Duration="0:0:0:0.12"
+                                                        RepeatBehavior="2x">
+                                <LinearDoubleKeyFrame Value="3" KeyTime="0:0:0:0.03"/>
+                                <LinearDoubleKeyFrame Value="-3" KeyTime="0:0:0:0.09" />
+                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0:0.12" />
+                            </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
                 </MultiDataTrigger.EnterActions>
             </MultiDataTrigger>
+            
+            <!--Press Animation-->
+            <DataTrigger Binding="{Binding State}" Value="{x:Static vms:CellState.Previous}">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation To="0,5,0,0"
+                                                Storyboard.TargetProperty="BorderThickness"
+                                                Duration="{StaticResource ButtonPressDuration}"/>
+                            <ColorAnimation To="#FF694887"
+                                            Storyboard.TargetProperty="Background.Color"
+                                            Duration="{StaticResource ButtonPressDuration}"/>
+                            <ColorAnimation To="#FF593D74"
+                                            Storyboard.TargetProperty="BorderBrush.Color"
+                                            Duration="{StaticResource ButtonPressDuration}"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation To="{x:Null}"
+                                                Storyboard.TargetProperty="BorderThickness"
+                                                Duration="{StaticResource ButtonPressDuration}"/>
+                            <ColorAnimation To="{x:Null}"
+                                            Storyboard.TargetProperty="Background.Color"
+                                            Duration="{StaticResource ButtonPressDuration}"/>
+                            <ColorAnimation To="{x:Null}"
+                                            Storyboard.TargetProperty="BorderBrush.Color"
+                                            Duration="{StaticResource ButtonPressDuration}"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
 
             <!--Set Eye-->
             <DataTrigger Binding="{Binding Number}" Value="{x:Null}">
@@ -80,11 +126,11 @@
             </DataTrigger>
             
             <!--Set Color Style-->
-            <DataTrigger Binding="{Binding Color, Mode=OneTime}" Value="{x:Static vms:CellColor.Red}">
+            <DataTrigger Binding="{Binding Color}" Value="{x:Static vms:CellColor.Red}">
                 <Setter Property="Background" Value="#FFE2526E"></Setter>
                 <Setter Property="BorderBrush" Value="#FFA93D52"></Setter>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Color, Mode=OneTime}" Value="{x:Static vms:CellColor.Yellow}">
+            <DataTrigger Binding="{Binding Color}" Value="{x:Static vms:CellColor.Yellow}">
                 <Setter Property="Background" Value="#FFEEC13A"></Setter>
                 <Setter Property="BorderBrush" Value="#FFA08120"></Setter>
             </DataTrigger>

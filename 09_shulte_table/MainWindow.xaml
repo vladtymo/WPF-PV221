@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_09_shulte_table"
         xmlns:vms="clr-namespace:_09_shulte_table.ViewModels"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        d:DataContext="{d:DesignInstance Type=vms:TableVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="350" Background="{x:Null}">
+        Title="MainWindow" Height="400" Width="400" Background="{x:Null}">
 
     <Border Style="{StaticResource OuterBorder}">
         <Border Style="{StaticResource InnerBorder}">
-            <ItemsControl ItemsSource="{Binding Cells}">
+            <ItemsControl ItemsSource="{Binding Path=TableCells}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid/>

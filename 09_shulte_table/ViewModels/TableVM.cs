@@ -1,57 +1,92 @@
 ﻿using _09_shulte_table.Helpers;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace _09_shulte_table.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class TableVM
     {
-        private IList<CellVM> cells = new List<CellVM>();
+        private IList<CellVM> cells = new ObservableCollection<CellVM>();
+        private RelayCommand cellClickCommand;
 
         // ------- Binding Properties -------
-        public IEnumerable<CellVM> Cells => cells;
-        public int FirstNumber => 1;
-        public int LastNumber => Size * Size - 1; // due to we have eye cell in center
+        public IEnumerable<CellVM> TableCells { get; private set; }
+        public int FirstNumber { get; } = 1;
+        public int LastNumber => Size * Size - 1; // due to we have eye cell in the center
         public int Size { get; }
+
+        // Click logic
+        public int FirstNumberIndex { get; } = 0;
+        public int LastNumberIndex { get; }
+        public int CurrentNumberIndex { get; private set; }
+        public bool IsFinish => CurrentNumberIndex == LastNumberIndex;
 
         public TableVM(int size) 
         {
-            Size = size;
+            Size = size < 3 ? 3 : (size % 2 == 0 ? size + 1 : size);
+            LastNumberIndex = LastNumber - 1;
+            CurrentNumberIndex = FirstNumberIndex;
+
+            cellClickCommand = new((o) => CellClick((int)o));
+
+            InitializeCells();
+            GenerateTable();
+        }
+
+        private void InitializeCells()
+        {
+            cells.Clear();
 
             for (int i = FirstNumber; i <= LastNumber; ++i)
             {
-                cells.Add(new CellVM(i));
+                cells.Add(new CellVM(i, cellClickCommand));
             }
-            cells.Shuffle();
 
-            cells.Insert(cells.Count / 2, new CellVM());
+            cells[FirstNumberIndex].State = CellState.Current;
         }
-    }
-
-    public enum CellColor
-    {
-        White, Yellow, Green, Blue, Red, Purple
-    }
-    public class CellVM
-    {
-        private static Random rnd = new();
-
-        // ------- Binding Properties -------
-        public int? Number { get; }
-        public CellColor Color { get; set; }
-
-        public CellVM(int? number = null)
+        private void GenerateTable()
         {
-            Number = number;
-            Color = Number != null ? GetRandomColor() : CellColor.White;
+            var table = new List<CellVM>(cells);
+            table.Shuffle();
+            table.Insert(cells.Count / 2, new CellVM());
+
+            TableCells = new List<CellVM>(table);
+        }
+        private void ResetCellStates()
+        {
+            foreach (var cell in cells)
+                cell.State = CellState.Next;
+
+            cells[FirstNumberIndex].State = CellState.Current;
+            CurrentNumberIndex = FirstNumberIndex;
         }
 
-        private static CellColor GetRandomColor()
+        private void CellClick(int number)
         {
-            return (CellColor)rnd.Next(Enum.GetValues(typeof(CellColor)).Length);
+            if (cells[CurrentNumberIndex].Number == number)
+            {
+                cells[CurrentNumberIndex].State = CellState.Previous;
+
+                if (!IsFinish)
+                    cells[++CurrentNumberIndex].State = CellState.Current;
+                else
+                {
+                    MessageBox.Show("Congrats!");
+                    CurrentNumberIndex = FirstNumberIndex;
+                    InitializeCells();
+                    GenerateTable();
+                    //ResetCellStates();
+                }
+            }
         }
     }
 }
